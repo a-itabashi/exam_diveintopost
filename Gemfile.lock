@@ -424,9 +424,3 @@ DEPENDENCIES
   tzinfo-data
   web-console (>= 3.3.0)
   webpacker (~> 3.5)
-
-RUBY VERSION
-   ruby 2.5.1p57
-
-BUNDLED WITH
-   1.16.4
