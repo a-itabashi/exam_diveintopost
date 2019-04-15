@@ -47,6 +47,19 @@ class TeamsController < ApplicationController
     @team = current_user.keep_team_id ? Team.find(current_user.keep_team_id) : current_user.teams.first
   end
 
+  def change_owner
+    @team = Team.find(params[:format])
+    # @owner = @team.owner_id
+    @team.owner_id = params[:assign]
+
+
+    if @team.update(team_params)
+      redirect_to team_path(@team), notice: 'オーナを更新しました！'
+    else
+      redirect_to team_path(@team), notice: '更新に失敗しました'
+    end
+  end
+
   private
 
   def set_team
@@ -54,6 +67,6 @@ class TeamsController < ApplicationController
   end
 
   def team_params
-    params.fetch(:team, {}).permit %i[name icon icon_cache owner_id keep_team_id]
+    params.fetch(:team, {}).permit %i[name icon icon_cache owner_id keep_team_id :assign]
   end
 end
