@@ -38,7 +38,7 @@
               </p>
             </a>
             <% if current_user.id == agenda.user_id %>
-              <%= link_to "アジェンダを削除", agenda_path(agenda), method: :delete, data: {confirm: "削除して宜しいですか？"}%>
+              <%= link_to "削除", agenda_path(agenda), method: :delete, data: {confirm: "削除して宜しいですか？"}, class: "pull-right" %>
             <% end %>
             <ul class="nav nav-treeview" style="display: block;">
               <% agenda.articles.each do |article| %>
@@ -58,9 +58,9 @@
         <% end %>
       </ul>
       <!-- ログアウトの挙動テスト用 -->
-      <% if false %>
+      
         <%= link_to "ログアウト",destroy_user_session_path, method: :delete %>
-      <% end %>
+
     </nav>
     <!-- /.sidebar-menu -->
   </div>

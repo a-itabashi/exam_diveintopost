@@ -32,6 +32,7 @@ class AgendasController < ApplicationController
     @agenda = Agenda.find(params[:id])
     @agenda.destroy
     # 通知メールの送信
+    AgendaMailer.agenda_mail(@agenda).deliver
     redirect_to dashboard_url
   end
 
