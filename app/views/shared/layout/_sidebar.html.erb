@@ -54,6 +54,9 @@
           </li>
         <% end %>
       </ul>
+       <!-- ログアウトの挙動テスト用 -->
+      
+        <%= link_to "ログアウト",destroy_user_session_path, method: :delete %>
     </nav>
     <!-- /.sidebar-menu -->
   </div>
