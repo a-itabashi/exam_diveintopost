@@ -52,6 +52,8 @@ class TeamsController < ApplicationController
     @team = Team.find(params[:format])
     @team.owner_id = params[:assign]
     if @team.update(team_params)
+      # 権限移動の完了メールを送付
+      TeamMailer.team_mail(@team).deliver
       redirect_to team_path(@team), notice: 'オーナを更新しました！'
     else
       redirect_to team_path(@team), notice: '更新に失敗しました'
