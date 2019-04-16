@@ -41,7 +41,10 @@
                     <tr>
                       <td><%= image_tag 'default.jpg', size: '40x40' %></td>
                       <td><%= assign.user.email %></td>
+                      <!-- 追加 -->
+
                       <td><%= link_to '削除', team_assign_path(@team, assign), method: :delete, class: 'btn btn-sm btn-danger' %></td>
+
                     </tr>
                   <% end %>
                 </tbody>
