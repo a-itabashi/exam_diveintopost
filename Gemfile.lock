@@ -257,6 +257,7 @@ GEM
       ruby-graphviz (~> 1.2)
     rails-html-sanitizer (1.0.4)
       loofah (~> 2.2, >= 2.2.2)
+    rails-js (0.0.1)
     railties (5.2.0)
       actionpack (= 5.2.0)
       activesupport (= 5.2.0)
@@ -417,6 +418,7 @@ DEPENDENCIES
   rails (~> 5.2.0)
   rails-controller-testing
   rails-erd
+  rails-js
   redcarpet (~> 2.3.0)
   rspec-parameterized
   rspec-rails

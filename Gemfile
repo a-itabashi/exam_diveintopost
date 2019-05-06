@@ -24,6 +24,7 @@ gem 'friendly_id', '~> 5.1.0'
 gem 'jbuilder', '~> 2.5'
 gem 'mini_magick', '~> 4.8'
 gem 'seed-fu', '~> 2.3'
+gem 'rails-js'
 # gem 'rmagick'
 # gem 'redis', '~> 4.0'
 # gem 'bcrypt', '~> 3.1.7'
@@ -46,6 +47,9 @@ group :development, :test do
   gem 'shoulda-matchers'
   gem 'spring'
   gem 'spring-commands-rspec'
+  gem 'pry-rails'
+  gem 'better_errors'
+  gem 'binding_of_caller'
 end
 
 group :development do
