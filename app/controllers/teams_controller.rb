@@ -1,6 +1,9 @@
 class TeamsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_team, only: %i[show edit update destroy]
+
+  before_action :allow_only_owner, only: %i[edit update]
+
   before_action :change_admin, only: %I[change_owner]
 
   def index
@@ -70,8 +73,13 @@ class TeamsController < ApplicationController
     params.fetch(:team, {}).permit %i[name icon icon_cache owner_id keep_team_id :assign]
   end
 
+
+  def allow_only_owner
+    @team = Team.friendly.find(params[:id])
+
   def change_admin
     @team = Team.find(params[:format])
+
     unless current_user.id == @team.owner_id
       redirect_to team_path(@team), notice: '権限がありません'
     end

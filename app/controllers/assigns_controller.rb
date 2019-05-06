@@ -15,7 +15,6 @@ class AssignsController < ApplicationController
   def destroy
     assign = Assign.find(params[:id])
     destroy_message = assign_destroy(assign, assign.user)
-
     redirect_to team_url(params[:team_id]), notice: destroy_message
   end
 
@@ -26,16 +25,24 @@ class AssignsController < ApplicationController
   end
 
   def assign_destroy(assign, assigned_user)
-    if assigned_user == assign.team.owner
+    if current_user.id == assigned_user.id
+      assign.destroy
+      set_next_team(assign, assigned_user)
+      'メンバーを削除しました。'
+    elsif assigned_user == assign.team.owner
       'リーダーは削除できません。'
     elsif Assign.where(user_id: assigned_user.id).count == 1
       'このユーザーはこのチームにしか所属していないため、削除できません。'
+    elsif current_user.id != assign.team.owner
+      '管理者権限がないため削除できない'
+    elsif current_user.id != assigned_user.id
+      '本人ではないため削除できない'
     elsif assign.destroy
       set_next_team(assign, assigned_user)
       'メンバーを削除しました。'
     else
       'なんらかの原因で、削除できませんでした。'
-    end    
+    end   
   end  
   
   def email_reliable?(address)
