@@ -43,9 +43,15 @@
                     <tr>
                       <td><%= image_tag 'default.jpg', size: '40x40' %></td>
                       <td><%= assign.user.email %></td>
+
                       <!-- 追加 -->
                       <% if current_user.id == @team.owner_id || current_user.id == assign.user_id %>
-                        <td><%= link_to '削除', team_assign_path(@team, assign), method: :delete, class: 'btn btn-sm btn-danger' %></td>
+         
+
+                      <td><%= link_to '削除', team_assign_path(@team, assign), method: :delete, class: 'btn btn-sm btn-danger' %></td>
+                      <% if current_user.id == @team.owner_id && current_user.id != assign.user.id %>
+                        <td><%= link_to '権限移動',dashboard_path(@team.id, assign: assign.user ), method: :put, class: 'btn btn-sm btn-info'%></td>
+
                       <% end %>
                     </tr>
                   <% end %>
