@@ -3,8 +3,13 @@ class AgendaMailer < ApplicationMailer
     @agenda = agenda
 
     @users = @agenda.team.members
-    @users.each do |user|
-      mail to:  "#{user.email}" , subject: "アジェンダが削除されました"
-    end
+    mail to: @users.map{|u| u.email}
+    mail subject: "アジェンダが削除されました"  
+
+
+    # @users.each do |user|
+    #   mail to:  "#{user.email}" , 
+    #   subject: "アジェンダが削除されました"
+    # end
   end
 end
